@@ -5,6 +5,15 @@ def call(Map config) {
 
         stages {
 
+            stage('Checkout') {
+                steps {
+                    git(
+                        url: config.gitUrl,
+                        branch: config.gitBranch
+                    )
+                }
+            }
+
             stage('Build') {
                 steps {
                     sh config.buildCommand
